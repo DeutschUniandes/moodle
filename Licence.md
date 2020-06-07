@@ -1,1 +1,5 @@
-Los archivos de audio son propiedad de la Universidad de los Andes, Bogotá, Colombia. Las imágenes fueron tomadas de los siguientes sitios:
+Los archivos de audio son producto y propiedad de la Universidad de los Andes, en Bogotá, Colombia. Prohibido su uso sin consentimiento previo.
+
+Varias imágenes no son creaciones propias sino que fueron tomadas de los siguientes sitios, créditos a sus autores:
+
+http://www.nthuleen.com/teach/images/paarkleidung.gif
