@@ -1,0 +1,16 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "FacilityName": "Spree Fluß",
+        "Comments": "Sí se llama así, oder?"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.403247882110463, 52.5178647749361]
+      }
+    }
+  ]
+}
