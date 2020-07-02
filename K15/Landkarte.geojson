@@ -4,8 +4,8 @@
     {
       "type": "Feature",
       "properties": {
-        "FacilityName": "Spree Fluß",
-        "Comments": "Sí se llama así, oder?"
+        "FacilityName": "Spree",
+        "Comments": ""
       },
       "geometry": {
         "type": "Point",
