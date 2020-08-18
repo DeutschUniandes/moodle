@@ -11,3 +11,5 @@ https://upload.wikimedia.org/wikipedia/commons/8/87/Rostock_Stra%C3%9Fenbahn_201
 https://de.statista.com/infografik/1690/wohnsituation-von-studierenden-in-deutschland/
 http://www.bvg.de/
 http://www.acapela.tv/card/theFlow/a9eb67e4ff5d6b153204c52ab0d63a8b95281ddb/
+
+También se usó información de Deutsche Welle, créditos en https://www.dw.com/en/learn-german/s-2469
