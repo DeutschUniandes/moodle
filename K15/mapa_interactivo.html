@@ -1,0 +1,214 @@
+<html>
+<body>
+<div id="map" style="width: 100%; height: 600px;" class="mapboxgl-map">&nbsp;<div class="mapboxgl-canary" style="visibility: hidden;"></div><div class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate"><canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" width="1764" height="1350" style="width: 784px; height: 600px;"></canvas></div><div class="mapboxgl-control-container"><div class="mapboxgl-ctrl-top-left"></div><div class="mapboxgl-ctrl-top-right"></div><div class="mapboxgl-ctrl-bottom-left"><div class="mapboxgl-ctrl" style="display: block;"><a class="mapboxgl-ctrl-logo" target="_blank" rel="noopener nofollow" href="https://www.mapbox.com/" aria-label="Mapbox logo"></a></div></div><div class="mapboxgl-ctrl-bottom-right"><div class="mapboxgl-ctrl mapboxgl-ctrl-attrib"><div class="mapboxgl-ctrl-attrib-inner"><a href="https://www.mapbox.com/about/maps/" target="_blank" title="Mapbox" aria-label="Mapbox" role="listitem">© Mapbox</a> <a href="https://www.openstreetmap.org/about/" target="_blank" title="OpenStreetMap" aria-label="OpenStreetMap" role="listitem">© OpenStreetMap</a> <a class="mapbox-improve-map" href="https://apps.mapbox.com/feedback/?owner=mapbox&amp;id=streets-v11&amp;access_token=pk.eyJ1IjoiZGV1dHNjaHVuaWFuZGVzIiwiYSI6ImNrYzVodTFzMTBjcGsycXBjM3JiYWp4b3MifQ.34GuTC6ZHvRQj-FMOjxRig" target="_blank" title="Improve this map" aria-label="Improve this map" role="listitem" rel="noopener nofollow">Improve this map</a></div></div></div></div></div>
+<script type="text/javascript" src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+<script type="text/javascript">// <![CDATA[
+mapboxgl.accessToken =
+        "pk.eyJ1IjoiZGV1dHNjaHVuaWFuZGVzIiwiYSI6ImNrYzVodTFzMTBjcGsycXBjM3JiYWp4b3MifQ.34GuTC6ZHvRQj-FMOjxRig";
+      var map = new mapboxgl.Map({
+        container: "map", // container id
+        style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+        center: [13.405001, 52.517901], // starting position [lng, lat]
+        zoom: 16, // starting zoom
+      });
+
+      map.on("load", function () {
+        // Etiquetas de texto
+        map.addSource("off-leash-areas", {
+          type: "geojson",
+          data:
+            "https://raw.githubusercontent.com/DeutschUniandes/moodle/master/K15/Landkarte.geojson",
+        });
+        map.addLayer({
+          id: "off-leash-areas",
+          type: "symbol",
+          source: "off-leash-areas",
+          layout: {
+            "text-field": [
+              "format",
+              ["get", "FacilityName"],
+              { "font-scale": 1 },
+            ],
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "center",
+          },
+        });
+
+        // Linea de la ruta
+        map.addSource("route", {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "LineString",
+              coordinates: [
+                [13.402119315018126, 52.519393718785125],
+                [13.402284894852528, 52.51922276978132],
+                [13.402344559405492, 52.51924399218734],
+                [13.402638515383615, 52.51895099520999],
+                [13.40273455784984, 52.51888909950608],
+                [13.402677269451488, 52.518834827490736],
+                [13.40288132925798, 52.518592059335646],
+                [13.404294511441435, 52.51717625031111],
+                [13.404471743202748, 52.517012228580285],
+                [13.404516051143105, 52.51701672233452],
+                [13.405531104191255, 52.516192315980675],
+                [13.405699692918233, 52.516277708908405],
+                [13.40568123127639, 52.51630242496404],
+                [13.407169239610539, 52.517016937654574],
+              ],
+            },
+          },
+        });
+        map.addLayer({
+          id: "route",
+          type: "line",
+          source: "route",
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-color": "#ff0080",
+            "line-width": 5,
+          },
+        });
+
+        // DDR
+        map.loadImage(
+          "https://raw.githubusercontent.com/DeutschUniandes/moodle/master/K15/DDR_Museum.jpg",
+          function (error, image) {
+            if (error) throw error;
+            map.addImage("DDR", image);
+            map.addSource("DDR", {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: [
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [13.402256290960622, 52.51942157129389],
+                    },
+                  },
+                ],
+              },
+            });
+            map.addLayer({
+              id: "DDR",
+              type: "symbol",
+              source: "DDR",
+              layout: {
+                "icon-image": "DDR",
+                "icon-size": 0.05,
+              },
+            });
+          }
+        );
+
+        // Die Treppe
+        map.loadImage(
+          "https://raw.githubusercontent.com/DeutschUniandes/moodle/master/K15/Treppe.png",
+          function (error, image) {
+            if (error) throw error;
+            map.addImage("cat", image);
+            map.addSource("cat", {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: [
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [13.402529266222587, 52.51892152813745],
+                    },
+                  },
+                ],
+              },
+            });
+            map.addLayer({
+              id: "cat",
+              type: "symbol",
+              source: "cat",
+              layout: {
+                "icon-image": "cat",
+                "icon-size": 0.1,
+              },
+            });
+          }
+        );
+
+        // Denkmal
+        map.loadImage(
+          "https://raw.githubusercontent.com/DeutschUniandes/moodle/master/K15/st_George_Denkmal.png",
+          function (error, image) {
+            if (error) throw error;
+            map.addImage("denkmal", image);
+            map.addSource("denkmal", {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: [
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [13.405573481340411, 52.51628075292376],
+                    },
+                  },
+                ],
+              },
+            });
+            map.addLayer({
+              id: "denkmal",
+              type: "symbol",
+              source: "denkmal",
+              layout: {
+                "icon-image": "denkmal",
+                "icon-size": 0.35,
+              },
+            });
+          }
+        );
+
+        // Nikolaikirche
+        map.loadImage(
+          "https://raw.githubusercontent.com/DeutschUniandes/moodle/master/K15/Nikolaikirche.png",
+          function (error, image) {
+            if (error) throw error;
+            map.addImage("Nikolaikirche", image);
+            map.addSource("Nikolaikirche", {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: [
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [13.407491164035491, 52.51681447748629],
+                    },
+                  },
+                ],
+              },
+            });
+            map.addLayer({
+              id: "Nikolaikirche",
+              type: "symbol",
+              source: "Nikolaikirche",
+              layout: {
+                "icon-image": "Nikolaikirche",
+                "icon-size": 0.35,
+              },
+            });
+          }
+        );
+      });
+// ]]></script>
+
+</body>
+</html>
